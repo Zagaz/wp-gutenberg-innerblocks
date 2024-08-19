@@ -1,9 +1,23 @@
 import { useBlockProps } from '@wordpress/block-editor';
+// innerblocks
+import { InnerBlocks } from '@wordpress/block-editor';
 
-export default function save() {
+
+export default function save({ attributes }) {
+	const blockProps = useBlockProps.save();
+	const { title, isTitleActive } = attributes;
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Wp Gutenberg Innerblocks – hello from the saved content!' }
-		</p>
+		<>
+			<div {...blockProps}>
+				{
+					isTitleActive && title && (
+						<h2>{title}</h2>
+					)
+				}
+			</div>
+
+
+
+		</>
 	);
 }
