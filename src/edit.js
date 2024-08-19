@@ -29,6 +29,7 @@ export default function Edit({ attributes, setAttributes }) {
 					checked={isTitleActive}
 					onChange={setTitleActive}
 				/>
+				{/* // Main Image */}
 				<InnerBlocks
 					template={TEMPLATE}
 					templateLock="all"
