@@ -26,19 +26,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const IMG_BLOCK = ["core/image"];
-const TEXT_BLOCK = {
-  name: "core/paragraph"
-};
-const TEMPLATE = [["core/columns", {}, [["core/column", {}, [["core/heading", {
-  placeholder: "Enter main content..."
-}], ["core/image"]]], ["core/column", {}, [["core/paragraph", {
-  placeholder: "Enter side content..."
-}]]]]]];
-(0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
-  orientation: "horizontal",
-  template: TEMPLATE
-});
+const TEMPLATE = [["core/image", {
+  align: "center"
+}]];
 function Edit({
   attributes,
   setAttributes
@@ -65,6 +55,9 @@ function Edit({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Display Title"),
     checked: isTitleActive,
     onChange: setTitleActive
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
+    template: TEMPLATE,
+    templateLock: "all"
   })));
 }
 
@@ -148,11 +141,17 @@ function save({
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save();
   const {
     title,
-    isTitleActive
+    isTitleActive,
+    TEMPLATE
   } = attributes;
+  // Get the InnerBlocks.Content url
+  const content = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, isTitleActive && title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, title)));
+  }, isTitleActive && title && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, null) && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks.Content, {
+    // class name for the inner blocks
+    className: "my-inner-blocks"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null));
 }
 
 /***/ }),
